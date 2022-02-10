@@ -1,27 +1,46 @@
 package com.techelevator;
 
+import com.techelevator.view.Display;
 import com.techelevator.view.Menu;
 
-public class VendingMachineCLI {
+import javax.crypto.spec.PSource;
 
-	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
-	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
+public class VendingMachineCLI extends Display {
+
+	//MAIN MENU FINAL VARIABLES
+	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
+	private static final String MMO_PURCHASE = "Purchase";
+	private static final String[] MM_OPTIONS = { MMO_DISPLAY_ITEMS, MMO_PURCHASE };
+
+	//PURCHASE MENU FINAL VARIABLES
+	private static final String PMO = "Feed money";
+	private static final String PM0_SELECT_PRODUCT ="Select Product";
+	private static final String PMO_FINISH = "Finish Transaction";
+	private static final String [] PMO_OPTIONS = { PMO, PM0_SELECT_PRODUCT, PMO_FINISH};
+
+	private String list;
+
+	public String getList() {
+		return list;
+	}
+
+
+
 
 	private Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
-
 	public void run() {
 		while (true) {
-			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
 
-			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				// display vending machine items
-			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
+			if (choice.equals(MMO_DISPLAY_ITEMS)) {
+				System.out.println(list);
+
+			} else if (choice.equals(MMO_PURCHASE)) {
+				choice= (String) menu.getChoiceFromOptions(PMO_OPTIONS);
 			}
 		}
 	}
