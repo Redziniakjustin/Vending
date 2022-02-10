@@ -40,15 +40,15 @@ public class VendingMachineCLI extends Display {
 
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
 				//TO DO COME BACK AND REFACTOR THIS
-				System.out.println(Display(display).subList(0,4));
-				System.out.println(Display(display).subList(4,8));
-				System.out.println(Display(display).subList(8,12));
-				System.out.println(Display(display).subList(12,16));
+				System.out.println(readFile(display).subList(0,4));
+				System.out.println(readFile(display).subList(4,8));
+				System.out.println(readFile(display).subList(8,12));
+				System.out.println(readFile(display).subList(12,16));
 
 			} else if (choice.equals(MMO_PURCHASE)) {
 				choice= (String) menu.getChoiceFromOptions(PMO_OPTIONS);
 			} else if(choice.equals(EXIT)) {
-				System.out.println(EXIT);
+				System.exit(0);
 			}
 		}
 	}
