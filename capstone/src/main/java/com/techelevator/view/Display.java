@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public abstract class Display {
 
-    public static void main(String[] args) {
+    public static List<String> Display (String[] args) {
 
         File inventoryFile = new File("vendingmachine.csv");
         List<String> list = new ArrayList<>();
@@ -19,10 +19,12 @@ public abstract class Display {
             while (userInput.hasNextLine()) {
                 list.add(userInput.nextLine());
             }
-            System.out.println(list);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
+
+        return list;
+
     }
 
 
