@@ -15,9 +15,11 @@ public abstract class Display {
 
         File inventoryFile = new File("vendingmachine.csv");
         List<String> list = new ArrayList<>();
+
         try (Scanner userInput = new Scanner(inventoryFile)) {
             while (userInput.hasNextLine()) {
                 list.add(userInput.nextLine());
+
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());

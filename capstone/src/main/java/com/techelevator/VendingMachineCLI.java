@@ -11,7 +11,7 @@ public class VendingMachineCLI extends Display {
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MMO_PURCHASE = "Purchase";
 	private static final String EXIT = "Exit";
-	private static final String[] MM_OPTIONS = { MMO_DISPLAY_ITEMS, MMO_PURCHASE };
+	private static final String[] MM_OPTIONS = { MMO_DISPLAY_ITEMS, MMO_PURCHASE,EXIT };
 
 	//PURCHASE MENU FINAL VARIABLES
 	private static final String PMO = "Feed money";
@@ -39,6 +39,7 @@ public class VendingMachineCLI extends Display {
 			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
 
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
+				//TO DO COME BACK AND REFACTOR THIS
 				System.out.println(Display(display).subList(0,4));
 				System.out.println(Display(display).subList(4,8));
 				System.out.println(Display(display).subList(8,12));
