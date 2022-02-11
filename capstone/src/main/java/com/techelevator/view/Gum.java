@@ -4,8 +4,13 @@ import java.math.BigDecimal;
 
 public class Gum extends Item {
 
-    public Gum(String name, BigDecimal price, int quantity) {
-        super(name, price,  quantity);
+    //CONSTRUCTOR
+    public Gum(String name, String price,String type, int quantity) {
+        super(name, price,type,quantity);
+    }
+
+    public Gum(String inputItem, BigDecimal valueOf, String inputItem1) {
+        super(inputItem, valueOf, inputItem1);
     }
 
     @Override

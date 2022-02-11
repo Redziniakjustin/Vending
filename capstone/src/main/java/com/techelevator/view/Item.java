@@ -4,24 +4,35 @@ import java.math.BigDecimal;
 
 public abstract class Item {
     protected String name;
-    protected BigDecimal price;
+    protected String price;
     protected int quantity =5;
+    protected String type;
+
+    public Item(String inputItem, BigDecimal valueOf) {}
+
+    public Item(String inputItem, BigDecimal valueOf, String inputItem1) {}
+
 
     //GETTERS
     public String getName() {
         return name;
     }
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
     public int getQuantity() {
         return quantity;
     }
+    public String getType() {
+        return type;
+    }
+
 
     //METHOD
-    public Item(String name, BigDecimal price, int quantity){
+    public Item(String name, String  price, String type ,int quantity){
         this.name=name;
         this.price=price;
+        this.type=type;
         this.quantity=quantity;
     }
 
