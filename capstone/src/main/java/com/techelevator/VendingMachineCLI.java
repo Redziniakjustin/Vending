@@ -1,8 +1,6 @@
 package com.techelevator;
 
-import com.techelevator.view.Display;
-import com.techelevator.view.Menu;
-import com.techelevator.view.Money;
+import com.techelevator.view.*;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -10,7 +8,7 @@ import javax.crypto.spec.PSource;
 
 public class VendingMachineCLI extends Display {
 
-	protected static String selection;
+	public static String selection;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -24,18 +22,27 @@ public class VendingMachineCLI extends Display {
 	private static final String PMO_FINISH = "Finish Transaction";
 	private static final String [] PMO_OPTIONS = { PMO, PM0_SELECT_PRODUCT, PMO_FINISH};
 
-	//CUSTOMER SELECTION MENU
-
 	private String list;
+	//Refactor Later
+	private Menu menu;
+	private VendingMachine VendingMachine= new VendingMachine();
+	public Money money = new Money();
+	public Item item = new Item();
+
+
+	public VendingMachineCLI(Menu menu) {
+		this.menu = menu;
+		this.VendingMachine = new VendingMachine();
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
 	public String getList() {
 		return list;
 	}
 
-	private Menu menu;
 
-	public VendingMachineCLI(Menu menu, String selection) {
-		this.menu = menu;
-	}
 	public void run() {
 
 		String[] display = {};
@@ -57,17 +64,20 @@ public class VendingMachineCLI extends Display {
 					System.out.println(" Vending Machine accepts $1, $2, $5, and $10");
 					System.out.print("Please type amount : ");
 					selection = purchaseScanner.nextLine();
-					/*if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
+					if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
 						System.out.println("Invalid bill selection");
 
 					} else {
-							balance = BigDecimal.valueOf(Double.parseDouble(String.valueOf(balance)));
-							balance = balance.add(BigDecimal.valueOf(Double.parseDouble(selection)));
-							System.out.println("Your balance is now $" + balance);
-						}*/
-					System.out.println("Your balance is now $" + balance);
+						money.feedMoney(selection);
 					}
-					//	selection = (String) menu.getChoiceFromOptions(CMO_OPTIONS);
+
+					System.out.println("Please input slot item number");
+					String slotNumber = purchaseScanner.nextLine();
+					if (!keyAndValueMap.containsKey(slotNumber)) {
+						System.out.println("Does not exist");
+					}
+					else (keyAndValueMap.get(slotNumber) )
+				}
 				} else if(choice.equals(EXIT)) {
 					System.exit(0);
 			}
