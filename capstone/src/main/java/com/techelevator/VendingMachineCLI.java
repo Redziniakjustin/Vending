@@ -45,10 +45,10 @@ public class VendingMachineCLI extends Display {
 				System.out.println(readFile(display).subList(4,8));
 				System.out.println(readFile(display).subList(8,12));
 				System.out.println(readFile(display).subList(12,16));
-				System.out.println(itemMap(mapOfItems));
-
 			} else if (choice.equals(MMO_PURCHASE)) {
 				choice= (String) menu.getChoiceFromOptions(PMO_OPTIONS);
+
+
 			} else if(choice.equals(EXIT)) {
 				System.exit(0);
 			}

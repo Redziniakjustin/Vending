@@ -1,25 +1,15 @@
 package com.techelevator.view;
 
-public class Beverages implements Item{
-    @Override
-    public String name() {
-        return null;
+import java.math.BigDecimal;
+
+public class Beverages extends Item {
+
+    public Beverages(String name, BigDecimal price, int quantity) {
+        super(name, price, quantity);
     }
 
     @Override
     public String message() {
         return "Glug Glug, Yum!";
     }
-
-    @Override
-    public int price() {
-        return 0;
-    }
-
-    @Override
-    public int slotNumber() {
-        return 0;
-    }
-
-
 }

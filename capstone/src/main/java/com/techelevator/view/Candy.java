@@ -1,34 +1,15 @@
 package com.techelevator.view;
 
-public class Candy implements Item{
-//    private String name;
-//    private int price;
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getPrice() {
-//        return price;
-//    }
+import java.math.BigDecimal;
 
-    @Override
-    public String name() {
-        return null;
+public class Candy extends Item {
+
+    public Candy(String name, BigDecimal price, int quantity) {
+        super(name, price, quantity);
     }
 
     @Override
     public String message() {
         return "Munch Munch, Yum!";
-    }
-
-    @Override
-    public int price() {
-        return 0;
-    }
-
-    @Override
-    public int slotNumber() {
-        return 0;
     }
 }

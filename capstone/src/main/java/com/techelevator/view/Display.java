@@ -28,9 +28,7 @@ public abstract class Display {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
         return list;
-
     }
 
     public static Map<String, String> itemMap(String[] args) {

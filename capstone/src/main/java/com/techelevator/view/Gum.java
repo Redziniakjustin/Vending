@@ -1,10 +1,11 @@
 package com.techelevator.view;
 
-public class Gum implements Item {
+import java.math.BigDecimal;
 
-    @Override
-    public String name() {
-        return null;
+public class Gum extends Item {
+
+    public Gum(String name, BigDecimal price, int quantity) {
+        super(name, price,  quantity);
     }
 
     @Override
@@ -12,13 +13,5 @@ public class Gum implements Item {
         return "Chew Chew, Yum!";
     }
 
-    @Override
-    public int price() {
-        return 0;
-    }
 
-    @Override
-    public int slotNumber() {
-        return 0;
-    }
 }
