@@ -3,16 +3,18 @@ package com.techelevator.view;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
 
 public abstract class Display {
 
+    static File inventoryFile = new File("vendingmachine.csv");
 
     public static List<String> readFile(String[] args) {
 
-        File inventoryFile = new File("vendingmachine.csv");
+
         List<String> list = new ArrayList<>();
         //  String[] display = {};
 
@@ -31,23 +33,24 @@ public abstract class Display {
 
     }
 
-    public Map<String, String> itemMap = new HashMap<>() {
-        File inventoryFile = new File("vendingmachine.csv");
-        String inventoryString = inventoryFile.toString();
-        String[] inputItems = inventoryString.split("//|");
-            try(
-        Scanner scanner = new Scanner(inventoryFile))
+    public static Map<String, String> itemMap(String[] args) {
+      //  String inventoryString = inventoryFile;
+        Map<String, String> keyAndValueMap = new HashMap<>();
 
-        {
+        try (Scanner scanner = new Scanner(inventoryFile)) {
+
             while (scanner.hasNextLine()) {
-                itemMap.put(inputItems[0], inputItems[2]);
+                String inventoryString = scanner.nextLine();
+                String[] inputItems = inventoryString.split("\\|");
+                keyAndValueMap.put(inputItems[0], inputItems[2]);
             }
         } catch(
         FileNotFoundException e)
 
         {
-            e.printStackTrace();
+            e.getMessage();
         }
+            return keyAndValueMap;
     }
 }
 

@@ -15,4 +15,9 @@ public class Chips implements Item{
     public int price() {
         return 0;
     }
+
+    @Override
+    public int slotNumber() {
+        return 0;
+    }
 }
