@@ -58,7 +58,7 @@ public class Money extends Display {
                     nickelCount++;
                 }
             }
-            change = ("Dispensing " + finalBalance + " in " + quarterCount + " quarters " + dimeCount + " dimes " + nickelCount + " nickels ");
+            change = ("Dispensing $" + finalBalance + " in " + quarterCount + " quarters " + dimeCount + " dimes " + nickelCount + " nickels ");
 
       //  } catch (NumberFormatException nfe) {
        // }

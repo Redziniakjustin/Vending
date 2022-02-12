@@ -97,17 +97,17 @@ public class VendingMachineCLI extends Display {
 									currentPrice = priceList.get(currentIndex);
 									System.out.println("Your selected: " + currentName + " for $" + currentPrice);
 									if (typeList.get(currentIndex).equals("Drink")) {
-										System.out.println("Dispensing " + currentName + " " + beverage.message());
-										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+										System.out.println("Dispensing " + currentName + ", " + beverage.message());
+										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
 									} else if (typeList.get(currentIndex).equals("Chip")) {
-										System.out.println("Dispensing " + currentName + " " + chip.message());
-										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+										System.out.println("Dispensing " + currentName + ", " + chip.message());
+										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
 									} else if (typeList.get(currentIndex).equals("Gum")) {
-										System.out.println("Dispensing " + currentName + " " + gum.message());
-										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+										System.out.println("Dispensing " + currentName + ", " + gum.message());
+										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
 									} else if (typeList.get(currentIndex).equals("Candy")) {
-										System.out.println("Dispensing " + currentName + " " + candy.message());
-										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+										System.out.println("Dispensing " + currentName + ", " + candy.message());
+										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
 									}
 								}
 								//	}
