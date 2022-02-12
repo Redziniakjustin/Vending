@@ -9,6 +9,8 @@ public class Gum extends Item {
         super(inputItem, valueOf, inputItem1, quantity);
     }
 
+    public Gum (Item item){};
+
     public String message() {
         return "Chew Chew, Yum!";
     }

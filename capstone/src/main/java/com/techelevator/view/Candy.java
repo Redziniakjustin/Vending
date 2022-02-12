@@ -8,6 +8,8 @@ public class Candy extends Item {
         super(inputItem, valueOf, inputItem1, quantity);
     }
 
+    public Candy(Item item) {};
+
     public String message() {
         return "Munch Munch, Yum!";
     }

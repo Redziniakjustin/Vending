@@ -12,6 +12,7 @@ public class VendingMachineCLI extends Display {
 
 	public static String selection;
 	public static String slotNumber = "";
+	public static BigDecimal currentPrice;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -34,6 +35,9 @@ public class VendingMachineCLI extends Display {
 
 	public Item item = new Item();
 	public Beverages beverage = new Beverages(keyAndValueMap.get(slotNumber));
+	public Chips chip = new Chips(keyAndValueMap.get(slotNumber));
+	public Gum gum = new Gum(keyAndValueMap.get(slotNumber));
+	public Candy candy = new Candy(keyAndValueMap.get(slotNumber));
 
 
 	public VendingMachineCLI(Menu menu) {
@@ -87,14 +91,29 @@ public class VendingMachineCLI extends Display {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
-								} else { int currentIndex = slotList.indexOf(slotNumber);
+								} else {
+									int currentIndex = slotList.indexOf(slotNumber);
 									String currentName = nameList.get(currentIndex);
-									BigDecimal currentPrice = priceList.get(currentIndex);
-									System.out.println("Your selected: "+ currentName+ " for $"+currentPrice);
-								//	String otherUpdate = beverage.name();
-									//String update = keyAndValueMap.get(slotNumber).toString();
+									currentPrice = priceList.get(currentIndex);
+									System.out.println("Your selected: " + currentName + " for $" + currentPrice);
+									if (typeList.get(currentIndex).equals("Drink")) {
+										System.out.println("Dispensing " + currentName + " " + beverage.message());
+										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+									} else if (typeList.get(currentIndex).equals("Chip")) {
+										System.out.println("Dispensing " + currentName + " " + chip.message());
+										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+									} else if (typeList.get(currentIndex).equals("Gum")) {
+										System.out.println("Dispensing " + currentName + " " + gum.message());
+										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+									} else if (typeList.get(currentIndex).equals("Candy")) {
+										System.out.println("Dispensing " + currentName + " " + candy.message());
+										System.out.println("Your new balance is " + "$" + money.makePurchase(currentPrice));
+									}
 								}
 								//	}
+						} else if (choice.equals(PMO_FINISH)) {
+							String a = "";
+							money.makeChange(a);
 						}
 					}
 		} else if (choice.equals(EXIT)) {

@@ -8,6 +8,8 @@ public class Chips extends Item {
         super(inputItem, valueOf, inputItem1, quantity);
     }
 
+    public Chips(Item item) {};
+
     public String message() {
         return "Crunch Crunch, Yum!";
     }
