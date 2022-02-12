@@ -30,9 +30,10 @@ public class VendingMachineCLI extends Display {
 	private Menu menu;
 	private VendingMachine VendingMachine = new VendingMachine();
 	public Money money = new Money();
+
+
 	public Item item = new Item();
 	public Beverages beverage = new Beverages(keyAndValueMap.get(slotNumber));
-
 
 
 	public VendingMachineCLI(Menu menu) {
@@ -52,10 +53,10 @@ public class VendingMachineCLI extends Display {
 
 		String[] display = {};
 		String[] mapOfItems = {};
+		itemMap(mapOfItems);
+			while (true) {
 
-		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
-
 			Scanner purchaseScanner = new Scanner(System.in);
 
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
@@ -64,7 +65,6 @@ public class VendingMachineCLI extends Display {
 				System.out.println(readFile(display).subList(4, 8));
 				System.out.println(readFile(display).subList(8, 12));
 				System.out.println(readFile(display).subList(12, 16));
-
 
 			} else if (choice.equals(MMO_PURCHASE)) {
 					while (true) {
@@ -87,11 +87,9 @@ public class VendingMachineCLI extends Display {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
-								} else {
-									int currentIndex = slotList.indexOf(slotNumber);
+								} else { int currentIndex = slotList.indexOf(slotNumber);
 									String currentName = nameList.get(currentIndex);
 									BigDecimal currentPrice = priceList.get(currentIndex);
-
 									System.out.println("Your selected: "+ currentName+ " for $"+currentPrice);
 								//	String otherUpdate = beverage.name();
 									//String update = keyAndValueMap.get(slotNumber).toString();

@@ -17,8 +17,8 @@ public class Display {
     public static List<BigDecimal> priceList = new ArrayList<>();
     public static List<String> typeList = new ArrayList<>();
     public static Map<String, Item> keyAndValueMap = new HashMap<>();
-    public static List<String> readFile(String[] args) {
 
+    public static List<String> readFile(String[] args) {
         // DISPLAY MENU
         List<String> list = new ArrayList<>();
         //  String[] display = {};
@@ -30,35 +30,22 @@ public class Display {
         }
         return list;}
 
-/*public static List organizedLists(){
-    try (Scanner scanner = new Scanner(inventoryFile)) {
-        while (scanner.hasNextLine()) {
-            String inventoryString = scanner.nextLine();
-            String[] inputItems = inventoryString.split("\\|");
-            slotList.add(inputItems[0]);
-            nameList.add(inputItems[1]);
-            priceList.add(BigDecimal.valueOf(Double.parseDouble(inputItems[2])));
-            typeList.add(inputItems[3]); }
-    } catch(FileNotFoundException e)
-    {e.getMessage();}
-    return null;
-}*/
 
-    public static Map<String, Item> itemMap(String[] args) {
+   public static Map<String, Item> itemMap(String[] args) {
       //  String inventoryString = inventoryFile;
       //  keyAndValueMap = new HashMap<String, Item>();
         try (Scanner scanner = new Scanner(inventoryFile)) {
-            while (scanner.hasNextLine()) {
-                String inventoryString = scanner.nextLine();
-               String[] inputItems = inventoryString.split("\\|");
-               slotList.add(inputItems[0]);
-               nameList.add(inputItems[1]);
+           while (scanner.hasNextLine()) {
+              String inventoryString = scanner.nextLine();
+             String[] inputItems = inventoryString.split("\\|");
+             slotList.add(inputItems[0]);
+              nameList.add(inputItems[1]);
                priceList.add(BigDecimal.valueOf(Double.parseDouble(inputItems[2])));
                typeList.add(inputItems[3]);
-                   // keyAndValueMap.put(inputItems[0], inputItems[2]);
-//                if (inputItems[3].equals("Drink")){
-//                    keyAndValueMap.put(inputItems[0], new Beverages(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5));
-//                    System.out.println(keyAndValueMap.get(inputItems[0]);
+//                   // keyAndValueMap.put(inputItems[0], inputItems[2]);
+////                if (inputItems[3].equals("Drink")){
+////                    keyAndValueMap.put(inputItems[0], new Beverages(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5));
+////                    System.out.println(keyAndValueMap.get(inputItems[0]);
 //                }
 //                else if (inputItems[3].equals("Chip")){
 //                    keyAndValueMap.put(inputItems[0], new Chips(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3], 5));
