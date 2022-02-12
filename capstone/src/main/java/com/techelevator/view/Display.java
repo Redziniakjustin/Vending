@@ -12,7 +12,7 @@ import java.util.*;
 public class Display {
 
     static File inventoryFile = new File("vendingmachine.csv");
-    public static Map keyAndValueMap;
+    public static Map<String, Item> keyAndValueMap = new HashMap<>();
     public static List<String> readFile(String[] args) {
 
 
@@ -34,7 +34,7 @@ public class Display {
 
     public static Map<String, Item> itemMap(String[] args) {
       //  String inventoryString = inventoryFile;
-        keyAndValueMap = new HashMap<String, Item>();
+      //  keyAndValueMap = new HashMap<String, Item>();
 
         try (Scanner scanner = new Scanner(inventoryFile)) {
 

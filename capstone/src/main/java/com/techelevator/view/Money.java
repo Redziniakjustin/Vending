@@ -3,6 +3,7 @@ package com.techelevator.view;
 import com.techelevator.VendingMachineCLI;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 public class Money {
 
@@ -16,6 +17,10 @@ public class Money {
             balance = balance.add(BigDecimal.valueOf(Double.parseDouble(selection)));
         System.out.println("Your balance is now $" + balance);
         }
+
+    public void makePurchase (BigDecimal balance, Map keyAndValueMap) {
+
+    }
 
 
 }

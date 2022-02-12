@@ -9,7 +9,6 @@ public class Gum extends Item {
         super(inputItem, valueOf, inputItem1, quantity);
     }
 
-    @Override
     public String message() {
         return "Chew Chew, Yum!";
     }

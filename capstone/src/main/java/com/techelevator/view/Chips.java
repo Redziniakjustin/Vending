@@ -8,7 +8,6 @@ public class Chips extends Item {
         super(inputItem, valueOf, inputItem1, quantity);
     }
 
-    @Override
     public String message() {
         return "Crunch Crunch, Yum!";
     }
