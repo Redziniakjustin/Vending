@@ -18,7 +18,7 @@ public class Money {
         System.out.println("Your balance is now $" + balance);
         }
 
-    public void makePurchase (BigDecimal balance, Map keyAndValueMap) {
+    public void makePurchase (BigDecimal balance, Map.Entry<String, Item> keyAndValueMap) {
 
     }
 

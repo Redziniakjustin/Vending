@@ -9,6 +9,7 @@ import javax.crypto.spec.PSource;
 public class VendingMachineCLI extends Display {
 
 	public static String selection;
+	public String slotNumber;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -50,6 +51,9 @@ public class VendingMachineCLI extends Display {
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
+
+			Scanner purchaseScanner = new Scanner(System.in);
+
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
 				//TO DO COME BACK AND REFACTOR THIS
 				System.out.println(readFile(display).subList(0, 4));
@@ -58,32 +62,35 @@ public class VendingMachineCLI extends Display {
 				System.out.println(readFile(display).subList(12, 16));
 
 			} else if (choice.equals(MMO_PURCHASE)) {
-				while (true) {
-					choice = (String) menu.getChoiceFromOptions(PMO_OPTIONS);
-					Scanner purchaseScanner = new Scanner(System.in);
-					System.out.println(" Vending Machine accepts $1, $2, $5, and $10");
-					System.out.print("Please type amount : ");
-					selection = purchaseScanner.nextLine();
-					if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
-						System.out.println("Invalid bill selection");
-						continue;
-					} else {
-						money.feedMoney(selection);
-						// Not looping back to purchase menu 
-					}
 					while (true) {
-						System.out.println("Please input slot item number");
-						String slotNumber = purchaseScanner.nextLine();
-						if (!keyAndValueMap.containsKey(slotNumber)) {
-							System.out.println("Does not exist");
-						} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
-							System.out.println("Sold Out");
-						} else {
-							Item update = keyAndValueMap.get(slotNumber);
-							System.out.println(update);
+						choice = (String) menu.getChoiceFromOptions(PMO_OPTIONS);
+
+						if (choice.equals(PMO)) {
+							System.out.println(" Vending Machine accepts only $1, $2, $5, and $10");
+							System.out.print("Please enter an amount : ");
+							selection = purchaseScanner.nextLine();
+							if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
+								System.out.println("Sorry, we only take ones, twos, fives, and tens!");
+							} else
+								money.feedMoney(selection);
+							// Not looping back to purchase menu
+						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
+
+							while (true) {
+								System.out.println("Please enter the item's slot number");
+								slotNumber = purchaseScanner.nextLine();
+								if (!keyAndValueMap.containsKey(slotNumber)) {
+									System.out.println("Sorry, that isn't a valid slot number");
+									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
+									//	System.out.println("Sold Out");
+								} else {
+									Item update = keyAndValueMap.get(slotNumber);
+									System.out.println(update);
+								}
+							}
+
 						}
 					}
-				}
 		} else if (choice.equals(EXIT)) {
 			System.exit(0);
 		}
