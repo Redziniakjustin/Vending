@@ -33,6 +33,8 @@ public class VendingMachineCLI extends Display {
 	public Item item = new Item();
 	public Beverages beverage = new Beverages(keyAndValueMap.get(slotNumber));
 
+
+
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 		this.VendingMachine = new VendingMachine();
@@ -41,7 +43,6 @@ public class VendingMachineCLI extends Display {
 	public Menu getMenu() {
 		return menu;
 	}
-
 	public String getList() {
 		return list;
 	}
@@ -63,7 +64,7 @@ public class VendingMachineCLI extends Display {
 				System.out.println(readFile(display).subList(4, 8));
 				System.out.println(readFile(display).subList(8, 12));
 				System.out.println(readFile(display).subList(12, 16));
-				System.out.println(itemMap(mapOfItems));
+
 
 			} else if (choice.equals(MMO_PURCHASE)) {
 					while (true) {
@@ -79,18 +80,21 @@ public class VendingMachineCLI extends Display {
 								money.feedMoney(selection);
 							// Not looping back to purchase menu
 						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
-
 							//	while (true) { with this while statement we loop back to the select product prompt, without it we go to purchase menu
 							System.out.println("Please enter the item's slot number");
 							slotNumber = purchaseScanner.nextLine();
-								if (!keyAndValueMap.containsKey(slotNumber)) {
+								if ( !slotList.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
-								} else if(keyAndValueMap.get(slotNumber).getType().equals("Drink")){
-									String otherUpdate = beverage.name();
+								} else {
+									int currentIndex = slotList.indexOf(slotNumber);
+									String currentName = nameList.get(currentIndex);
+									BigDecimal currentPrice = priceList.get(currentIndex);
+
+									System.out.println("Your selected: "+ currentName+ " for $"+currentPrice);
+								//	String otherUpdate = beverage.name();
 									//String update = keyAndValueMap.get(slotNumber).toString();
-									System.out.println(otherUpdate);
 								}
 								//	}
 						}

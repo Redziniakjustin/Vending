@@ -17,6 +17,6 @@ public class Beverages extends Item {
         return "Glug Glug, Yum!";
     }
 
-    public String name() {return Display.keyAndValueMap.get();}
+  // public String name() {return Display.keyAndValueMap.get();}
 
 }
