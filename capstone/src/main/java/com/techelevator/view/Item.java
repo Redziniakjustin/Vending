@@ -8,8 +8,8 @@ public class Item {
     protected int quantity =5;
     protected String type;
 
-    public Item(String inputItem, BigDecimal valueOf) {}
-    public Item(String inputItem, BigDecimal valueOf, String inputItem1) {}
+   // public Item(String inputItem, BigDecimal valueOf) {}
+    //public Item(String inputItem, BigDecimal valueOf, String inputItem1) {}
 
     public Item() {}
 
@@ -30,7 +30,7 @@ public class Item {
 
 
 
-    //METHOD
+    //Constructor
     public Item(String name, BigDecimal  price, String type ,int quantity){
         this.name=name;
         this.price=price;

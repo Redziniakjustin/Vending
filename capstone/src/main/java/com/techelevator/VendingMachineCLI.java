@@ -31,6 +31,7 @@ public class VendingMachineCLI extends Display {
 	private VendingMachine VendingMachine = new VendingMachine();
 	public Money money = new Money();
 	public Item item = new Item();
+	public Beverages beverage = new Beverages(keyAndValueMap.get(slotNumber));
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
@@ -86,9 +87,10 @@ public class VendingMachineCLI extends Display {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
-								} else {
-									String update = keyAndValueMap.get(slotNumber).toString();
-									System.out.println(update);
+								} else if(keyAndValueMap.get(slotNumber).getType().equals("Drink")){
+									String otherUpdate = beverage.name();
+									//String update = keyAndValueMap.get(slotNumber).toString();
+									System.out.println(otherUpdate);
 								}
 								//	}
 						}
