@@ -3,13 +3,15 @@ package com.techelevator;
 import com.techelevator.view.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import javax.crypto.spec.PSource;
 
 public class VendingMachineCLI extends Display {
 
 	public static String selection;
-	public String slotNumber;
+	public static String slotNumber = "";
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -60,13 +62,14 @@ public class VendingMachineCLI extends Display {
 				System.out.println(readFile(display).subList(4, 8));
 				System.out.println(readFile(display).subList(8, 12));
 				System.out.println(readFile(display).subList(12, 16));
+				System.out.println(itemMap(mapOfItems));
 
 			} else if (choice.equals(MMO_PURCHASE)) {
 					while (true) {
 						choice = (String) menu.getChoiceFromOptions(PMO_OPTIONS);
 
 						if (choice.equals(PMO)) {
-							System.out.println(" Vending Machine accepts only $1, $2, $5, and $10");
+							System.out.println(" Vending Machine only accepts $1, $2, $5, and $10");
 							System.out.print("Please enter an amount : ");
 							selection = purchaseScanner.nextLine();
 							if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
@@ -76,19 +79,18 @@ public class VendingMachineCLI extends Display {
 							// Not looping back to purchase menu
 						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
 
-							while (true) {
-								System.out.println("Please enter the item's slot number");
-								slotNumber = purchaseScanner.nextLine();
+							//	while (true) { with this while statement we loop back to the select product prompt, without it we go to purchase menu
+							System.out.println("Please enter the item's slot number");
+							slotNumber = purchaseScanner.nextLine();
 								if (!keyAndValueMap.containsKey(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
 								} else {
-									Item update = keyAndValueMap.get(slotNumber);
+									String update = keyAndValueMap.get(slotNumber).toString();
 									System.out.println(update);
 								}
-							}
-
+								//	}
 						}
 					}
 		} else if (choice.equals(EXIT)) {
