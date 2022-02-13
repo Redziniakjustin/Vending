@@ -16,6 +16,7 @@ public class Display {
     public static List<String> nameList = new ArrayList<>();
     public static List<BigDecimal> priceList = new ArrayList<>();
     public static List<String> typeList = new ArrayList<>();
+    public static List<Integer> quantityList = new ArrayList<>(15);
     public static Map<String, Item> keyAndValueMap = new HashMap<>();
 
     public static List<String> readFile(String[] args) {
@@ -29,7 +30,6 @@ public class Display {
             System.out.println(e.getMessage());
         }
         return list;}
-
 
    public static Map<String, Item> itemMap(String[] args) {
         try (Scanner scanner = new Scanner(inventoryFile)) {
@@ -47,6 +47,16 @@ public class Display {
         {e.getMessage();
         }
             return keyAndValueMap;
+    }
+
+    //QUANTITY LIST
+    public static List<Integer> getQuantityList(List slotList) {
+    //  public static void getQuantity (){
+        for (int i = 0; i <15; i++){
+            quantityList.add(5);
+        }
+        System.out.println(quantityList);
+        return quantityList;
     }
 
 }

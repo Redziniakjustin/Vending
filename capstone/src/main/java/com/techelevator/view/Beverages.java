@@ -14,5 +14,4 @@ public class Beverages extends Item {
     public String message() {
         return "Glug Glug, Yum!";
     }
-
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Item {
     protected String name;
     protected BigDecimal price;
-    protected int quantity =5;
+    protected int quantity=5;
     protected String type;
 
     public Item() {}

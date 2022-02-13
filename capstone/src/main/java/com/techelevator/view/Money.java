@@ -9,15 +9,11 @@ import java.util.Map;
 public class Money {
 
     //CLASS SCOPE BALANCE VARS
-    static BigDecimal balance = new BigDecimal(0);
-
+    public static BigDecimal balance = new BigDecimal(0);
     public Money() {
     }
-
     public Display display;
-
     public VendingMachineCLI cli;
-
     String[] mapOfItems = {};
 
     public void feedMoney(String selection) {
@@ -27,9 +23,16 @@ public class Money {
     }
 
     public BigDecimal makePurchase( BigDecimal currentPrice) {
-        VendingMachineCLI.finalBalance = balance.subtract(currentPrice);
-        balance = balance.subtract(currentPrice);
-        return VendingMachineCLI.finalBalance;
+        int result = (balance.compareTo(currentPrice));
+        if (result == -1) {
+            System.out.println("Your balance is too low to purchase this item.");
+            VendingMachineCLI.finalBalance = balance;
+        } else {
+            VendingMachineCLI.finalBalance = balance.subtract(currentPrice);
+            balance = balance.subtract(currentPrice);
+           VendingMachineCLI.currentQuantity = VendingMachineCLI.currentQuantity-1;
+        }
+            return VendingMachineCLI.finalBalance;
     }
 
     public void makeChange(BigDecimal finalBalance) {
@@ -39,9 +42,7 @@ public class Money {
         BigDecimal x = VendingMachineCLI.finalBalance;
         int result = (x.compareTo(BigDecimal.valueOf(Long.parseLong("0"))));
         int result2;
-
         // try {
-
         while (result > 0) {
             result = (x.compareTo(BigDecimal.valueOf(.25)));
             if (result == 1 || result == 0) {
@@ -64,6 +65,6 @@ public class Money {
             // }
         }
         System.out.println("Dispensing $" + VendingMachineCLI.finalBalance + " in " + quarterCount + " quarters " + dimeCount + " dimes " + nickelCount + " nickels ");
-
+        balance = new BigDecimal(0);
     }
 }
