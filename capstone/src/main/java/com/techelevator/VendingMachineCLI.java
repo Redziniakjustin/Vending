@@ -65,7 +65,7 @@ public class VendingMachineCLI {
 		List<String> names = Display.nameList;
 		List<BigDecimal> prices = Display.priceList;
 		List<String> types = Display.typeList;
-		List<Integer> quantity = Display.quantityList;
+		List<Integer> quantity = Display.getQuantityList(slots);
 
 
 			while (true) {
