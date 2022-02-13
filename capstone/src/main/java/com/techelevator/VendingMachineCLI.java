@@ -14,6 +14,7 @@ public class VendingMachineCLI {
 	public static BigDecimal currentPrice;
 	public static BigDecimal finalBalance = new BigDecimal(0);
 	public static Integer currentQuantity;
+	public static String currentName;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -52,7 +53,7 @@ public class VendingMachineCLI {
 	public String getList() {
 		return list;
 	}
-	vLogger vlog = new vLogger("Log.txt");
+	//vLogger vlog = new vLogger("Log.txt");
 	public void run() {
 
 
@@ -64,7 +65,7 @@ public class VendingMachineCLI {
 		List<String> names = Display.nameList;
 		List<BigDecimal> prices = Display.priceList;
 		List<String> types = Display.typeList;
-
+		List<Integer> quantity = Display.quantityList;
 
 
 			while (true) {
@@ -106,9 +107,9 @@ public class VendingMachineCLI {
 									System.out.println("Sorry, that isn't a valid slot number.");
 								}
 							int currentIndex = slots.indexOf(slotNumber);
-							currentQuantity = Display.quantityList.get(currentIndex);
-							String currentName = names.get(currentIndex);
+							currentName = names.get(currentIndex);
 							currentPrice = prices.get(currentIndex);
+							currentQuantity = quantity.get(currentIndex);
 								int result = (Money.balance.compareTo(currentPrice));
 							if (currentQuantity <=0){
 								System.out.println("Sold out!");}

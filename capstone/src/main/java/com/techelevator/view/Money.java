@@ -15,11 +15,17 @@ public class Money {
     public Display display;
     public VendingMachineCLI cli;
     String[] mapOfItems = {};
+    private static Logger appLog = new Logger("log.txt");
 
     public void feedMoney(String selection) {
         balance = BigDecimal.valueOf(Double.parseDouble(String.valueOf(balance)));
         balance = balance.add(BigDecimal.valueOf(Double.parseDouble(selection)));
         System.out.println("Your balance is now $" + balance);
+        try{
+            appLog.purchaseLog("Feed Money", balance, VendingMachineCLI.finalBalance);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public BigDecimal makePurchase( BigDecimal currentPrice) {
@@ -31,6 +37,11 @@ public class Money {
             VendingMachineCLI.finalBalance = balance.subtract(currentPrice);
             balance = balance.subtract(currentPrice);
            VendingMachineCLI.currentQuantity = VendingMachineCLI.currentQuantity-1;
+        }
+        try{
+            appLog.itemLog(VendingMachineCLI.currentName, VendingMachineCLI.slotNumber, balance, VendingMachineCLI.finalBalance);
+        } catch (Exception e) {
+            e.getMessage();
         }
             return VendingMachineCLI.finalBalance;
     }
@@ -66,5 +77,10 @@ public class Money {
         }
         System.out.println("Dispensing $" + VendingMachineCLI.finalBalance + " in " + quarterCount + " quarters " + dimeCount + " dimes " + nickelCount + " nickels ");
         balance = new BigDecimal(0);
+        try{
+            appLog.purchaseLog("Make Change", balance, VendingMachineCLI.finalBalance);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 }
