@@ -8,11 +8,7 @@ public class Item {
     protected int quantity =5;
     protected String type;
 
-   // public Item(String inputItem, BigDecimal valueOf) {}
-    //public Item(String inputItem, BigDecimal valueOf, String inputItem1) {}
-
     public Item() {}
-
 
     //GETTERS
     public String getName() {
@@ -28,8 +24,6 @@ public class Item {
         return type;
     }
 
-
-
     //Constructor
     public Item(String name, BigDecimal  price, String type ,int quantity){
         this.name=name;
@@ -38,5 +32,4 @@ public class Item {
         this.quantity=quantity;
     }
 
-//    public abstract String message();
 }

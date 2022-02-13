@@ -3,16 +3,16 @@ package com.techelevator;
 import com.techelevator.view.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
-import javax.crypto.spec.PSource;
 
-public class VendingMachineCLI extends Display {
+public class VendingMachineCLI {
 
 	public static String selection;
 	public static String slotNumber = "";
 	public static BigDecimal currentPrice;
+	public static BigDecimal finalBalance = new BigDecimal(0);
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -31,13 +31,13 @@ public class VendingMachineCLI extends Display {
 	private Menu menu;
 	private VendingMachine VendingMachine = new VendingMachine();
 	public Money money = new Money();
-
-
+	public Display display;
 	public Item item = new Item();
-	public Beverages beverage = new Beverages(keyAndValueMap.get(slotNumber));
-	public Chips chip = new Chips(keyAndValueMap.get(slotNumber));
-	public Gum gum = new Gum(keyAndValueMap.get(slotNumber));
-	public Candy candy = new Candy(keyAndValueMap.get(slotNumber));
+	public Map<String, Item> kvMap = Display.keyAndValueMap;
+	public Beverages beverage = new Beverages(kvMap.get(slotNumber));
+	public Chips chip = new Chips(kvMap.get(slotNumber));
+	public Gum gum = new Gum(kvMap.get(slotNumber));
+	public Candy candy = new Candy(kvMap.get(slotNumber));
 
 
 	public VendingMachineCLI(Menu menu) {
@@ -57,7 +57,12 @@ public class VendingMachineCLI extends Display {
 
 		String[] display = {};
 		String[] mapOfItems = {};
-		itemMap(mapOfItems);
+		Display.itemMap(mapOfItems);
+		List<String> slots = Display.slotList;
+		List<String> names = Display.nameList;
+		List<BigDecimal> prices = Display.priceList;
+		List<String> types = Display.typeList;
+
 			while (true) {
 
 			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
@@ -65,10 +70,10 @@ public class VendingMachineCLI extends Display {
 
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
 				//TO DO COME BACK AND REFACTOR THIS
-				System.out.println(readFile(display).subList(0, 4));
-				System.out.println(readFile(display).subList(4, 8));
-				System.out.println(readFile(display).subList(8, 12));
-				System.out.println(readFile(display).subList(12, 16));
+				System.out.println(Display.readFile(display).subList(0, 4));
+				System.out.println(Display.readFile(display).subList(4, 8));
+				System.out.println(Display.readFile(display).subList(8, 12));
+				System.out.println(Display.readFile(display).subList(12, 16));
 
 			} else if (choice.equals(MMO_PURCHASE)) {
 					while (true) {
@@ -84,36 +89,36 @@ public class VendingMachineCLI extends Display {
 								money.feedMoney(selection);
 							// Not looping back to purchase menu
 						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
-							//	while (true) { with this while statement we loop back to the select product prompt, without it we go to purchase menu
 							System.out.println("Please enter the item's slot number");
 							slotNumber = purchaseScanner.nextLine();
-								if ( !slotList.contains(slotNumber)) {
+								if ( !slots.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number");
 									//} else if (keyAndValueMap.get(item.getQuantity()).equals(0)) {
 									//	System.out.println("Sold Out");
 								} else {
-									int currentIndex = slotList.indexOf(slotNumber);
-									String currentName = nameList.get(currentIndex);
-									currentPrice = priceList.get(currentIndex);
+									int currentIndex = slots.indexOf(slotNumber);
+									String currentName = names.get(currentIndex);
+									currentPrice = prices.get(currentIndex);
 									System.out.println("Your selected: " + currentName + " for $" + currentPrice);
-									if (typeList.get(currentIndex).equals("Drink")) {
+									if (types.get(currentIndex).equals("Drink")) {
 										System.out.println("Dispensing " + currentName + ", " + beverage.message());
-										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
-									} else if (typeList.get(currentIndex).equals("Chip")) {
+										System.out.println("Your balance is now " + "$" + money.makePurchase(currentPrice));
+									} else if (types.get(currentIndex).equals("Chip")) {
 										System.out.println("Dispensing " + currentName + ", " + chip.message());
-										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
-									} else if (typeList.get(currentIndex).equals("Gum")) {
+										System.out.println("Your balance is now " + "$" + money.makePurchase(currentPrice));
+									} else if (types.get(currentIndex).equals("Gum")) {
 										System.out.println("Dispensing " + currentName + ", " + gum.message());
-										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
-									} else if (typeList.get(currentIndex).equals("Candy")) {
+										System.out.println("Your balance is now " + "$" + money.makePurchase(currentPrice));
+									} else if (types.get(currentIndex).equals("Candy")) {
 										System.out.println("Dispensing " + currentName + ", " + candy.message());
-										System.out.println("Your new balance is now " + "$" + money.makePurchase(currentPrice));
+										System.out.println("Your balance is now " + "$" + money.makePurchase(currentPrice));
 									}
 								}
 								//	}
 						} else if (choice.equals(PMO_FINISH)) {
-							String a = "";
-							money.makeChange(a);
+							money.makeChange(finalBalance);
+
+
 						}
 					}
 		} else if (choice.equals(EXIT)) {

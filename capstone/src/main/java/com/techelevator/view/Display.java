@@ -32,8 +32,6 @@ public class Display {
 
 
    public static Map<String, Item> itemMap(String[] args) {
-      //  String inventoryString = inventoryFile;
-      //  keyAndValueMap = new HashMap<String, Item>();
         try (Scanner scanner = new Scanner(inventoryFile)) {
            while (scanner.hasNextLine()) {
               String inventoryString = scanner.nextLine();
@@ -42,20 +40,6 @@ public class Display {
               nameList.add(inputItems[1]);
                priceList.add(BigDecimal.valueOf(Double.parseDouble(inputItems[2])));
                typeList.add(inputItems[3]);
-//                   // keyAndValueMap.put(inputItems[0], inputItems[2]);
-////                if (inputItems[3].equals("Drink")){
-////                    keyAndValueMap.put(inputItems[0], new Beverages(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5));
-////                    System.out.println(keyAndValueMap.get(inputItems[0]);
-//                }
-//                else if (inputItems[3].equals("Chip")){
-//                    keyAndValueMap.put(inputItems[0], new Chips(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3], 5));
-//                }
-//                else if (inputItems[3].equals("Candy")){
-//                    keyAndValueMap.put(inputItems[0], new Candy(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3], 5));
-//                }
-//                else if (inputItems[3].equals("Gum")){
-//                    keyAndValueMap.put(inputItems[0], new Gum(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5 ));
-//                }
             }
         } catch(
         FileNotFoundException e)
@@ -66,4 +50,41 @@ public class Display {
     }
 
 }
+
+ //Old map with lists added
+
+/*public static Map<String, Item> itemMap(String[] args) {
+      String inventoryString = inventoryFile;
+      keyAndValueMap = new HashMap<String, Item>();
+    try (Scanner scanner = new Scanner(inventoryFile)) {
+        while (scanner.hasNextLine()) {
+            String inventoryString = scanner.nextLine();
+            String[] inputItems = inventoryString.split("\\|");
+            slotList.add(inputItems[0]);
+            nameList.add(inputItems[1]);
+            priceList.add(BigDecimal.valueOf(Double.parseDouble(inputItems[2])));
+            typeList.add(inputItems[3]);
+                    keyAndValueMap.put(inputItems[0], inputItems[2]);
+                if (inputItems[3].equals("Drink")){
+                    keyAndValueMap.put(inputItems[0], new Beverages(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5));
+                    System.out.println(keyAndValueMap.get(inputItems[0]);
+                }
+                else if (inputItems[3].equals("Chip")){
+                    keyAndValueMap.put(inputItems[0], new Chips(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3], 5));
+                }
+                else if (inputItems[3].equals("Candy")){
+                    keyAndValueMap.put(inputItems[0], new Candy(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3], 5));
+                }
+                else if (inputItems[3].equals("Gum")){
+                    keyAndValueMap.put(inputItems[0], new Gum(inputItems[1], BigDecimal.valueOf(Double.parseDouble(inputItems[2])),inputItems[3],5 ));
+                }
+        }
+    } catch(
+            FileNotFoundException e)
+
+    {e.getMessage();
+    }
+    return keyAndValueMap;
+}*/
+
 
