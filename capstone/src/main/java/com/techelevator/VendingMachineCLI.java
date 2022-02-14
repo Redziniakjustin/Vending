@@ -5,17 +5,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class VendingMachineCLI {
-
-	public static String selection;
-	public static String slotNumber = "";
-	public static BigDecimal currentPrice;
-	public static BigDecimal finalBalance = new BigDecimal(0);
-	public static Integer currentQuantity;
-	public static String currentName;
-	public static int currentIndex;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -29,12 +20,19 @@ public class VendingMachineCLI {
 	private static final String PMO_FINISH = "Finish Transaction";
 	private static final String[] PMO_OPTIONS = {PMO, PM0_SELECT_PRODUCT, PMO_FINISH};
 
-	private String list;
-	//Refactor Later
-
-
+	//PRIVATE VARIABLES
 	private Menu menu;
 	private VendingMachine VendingMachine = new VendingMachine();
+	private String list;
+
+	//PUBLIC VARIABLES
+	public static String selection;
+	public static String slotNumber = "";
+	public static BigDecimal currentPrice;
+	public static BigDecimal finalBalance = new BigDecimal(0);
+	public static Integer currentQuantity;
+	public static String currentName;
+	public static int currentIndex;
 	public Money money = new Money();
 	public Display display;
 	public Item item = new Item();
@@ -54,11 +52,8 @@ public class VendingMachineCLI {
 	public String getList() {
 		return list;
 	}
-	//vLogger vlog = new vLogger("Log.txt");
+
 	public void run() {
-
-
-
 		String[] display = {};
 		String[] mapOfItems = {};
 		Display.itemMap(mapOfItems);
@@ -68,57 +63,53 @@ public class VendingMachineCLI {
 		List<String> types = Display.typeList;
 		List<Integer> quantity = Display.getQuantityList(slots);
 
-
+			//GET CHOICE FROM MAIN MENU OPTIONS
 			while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MM_OPTIONS);
 			Scanner purchaseScanner = new Scanner(System.in);
 
+			//DISPLAY MENU
 			if (choice.equals(MMO_DISPLAY_ITEMS)) {
-				//TO DO COME BACK AND REFACTOR THIS
-				System.out.println("___________________________________________________________________________________________________________");
-				System.out.println(Display.readFile(display).subList(0, 4));
-				System.out.println(Display.readFile(display).subList(4, 8));
-				System.out.println(Display.readFile(display).subList(8, 12));
-				System.out.println(Display.readFile(display).subList(12, 16));
-				System.out.println("___________________________________________________________________________________________________________");
-
+				Display.newDisplayMenu();
+				//GO TO PURCHASE MENU
 			} else if (choice.equals(MMO_PURCHASE)) {
 					while (true) {
 						choice = (String) menu.getChoiceFromOptions(PMO_OPTIONS);
-
+						//FEED MONEY
 						if (choice.equals(PMO)) {
-							System.out.println(" Vending Machine only accepts $1, $2, $5, and $10");
+							System.out.println();
+							System.out.println("* Vending Machine only accepts $1, $2, $5, and $10 *");
+							System.out.println();
 							System.out.print("Please enter an amount : ");
+							System.out.println();
 							selection = purchaseScanner.nextLine();
 							if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
 								System.out.println("Sorry, we only take ones, twos, fives, and tens!");
 							} else
 								money.feedMoney(selection);
-							// Not looping back to purchase menu
+							//SELECT PRODUCT
 						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
-							System.out.println("___________________________________________________________________________________________________________");
-							System.out.println(Display.readFile(display).subList(0, 4));
-							System.out.println(Display.readFile(display).subList(4, 8));
-							System.out.println(Display.readFile(display).subList(8, 12));
-							System.out.println(Display.readFile(display).subList(12, 16));
-							System.out.println("___________________________________________________________________________________________________________");
-							System.out.println("Please enter the item's slot number:");
+							Display.newDisplayMenu();
+							//CATCH INVALID SLOT
 							slotNumber = purchaseScanner.nextLine();
 								if ( !slots.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number.");
 								}
-							currentIndex = slots.indexOf(slotNumber);
+							int currentIndex = slots.indexOf(slotNumber);
 							currentName = names.get(currentIndex);
 							currentPrice = prices.get(currentIndex);
 							currentQuantity = quantity.get(currentIndex);
-								int result = (Money.balance.compareTo(currentPrice));
+							//CATCH SOLD OUT
+							int result = (Money.balance.compareTo(currentPrice));
 							if (currentQuantity <=0){
 								System.out.println("Sold out!");}
 							else {
+								//CATCH INSUFFICIENT FUNDS
 								if (result == -1) {
 									System.out.println("Sorry, your balance is too low to purchase this item.");
 									VendingMachineCLI.finalBalance = Money.balance;
 								} else {
+									//DISPENSE ITEM
 									System.out.println("Your selected: " + currentName + " for $" + currentPrice);
 									if (types.get(currentIndex).equals("Drink")) {
 										System.out.println("Dispensing " + currentName + ", " + beverage.message());
@@ -135,12 +126,13 @@ public class VendingMachineCLI {
 									}
 								}
 							}
-								//	}
+								//MAKE CHANGE AND GO TO MAIN MENU
 						} else if (choice.equals(PMO_FINISH)) {
-							money.makeChange(finalBalance);
+							money.makeChange();
 							break;
 						}
 					}
+					//EXIT
 		} else if (choice.equals(EXIT)) {
 			System.exit(0);
 		}
