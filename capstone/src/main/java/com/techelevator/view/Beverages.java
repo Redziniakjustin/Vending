@@ -11,6 +11,8 @@ public class Beverages extends Item {
     public Beverages(Item item) {
     }
 
+    public Beverages() {}
+
     public String message() {
         return "Glug Glug, Yum!";
     }

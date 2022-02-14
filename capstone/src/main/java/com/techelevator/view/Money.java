@@ -3,12 +3,9 @@ package com.techelevator.view;
 import com.techelevator.VendingMachineCLI;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
 
 public class Money {
 
-    //CLASS SCOPE BALANCE VARS
     public static BigDecimal balance = new BigDecimal(0);
     public Money() {
     }
@@ -22,8 +19,7 @@ public class Money {
         balance = BigDecimal.valueOf(Double.parseDouble(String.valueOf(balance)));
         balance = balance.add(BigDecimal.valueOf(Double.parseDouble(selection)));
         System.out.println("Your balance is now $" + balance);
-        try{
-            appLog.purchaseLog("Feed Money", balance, VendingMachineCLI.finalBalance);
+        try{appLog.purchaseLog("Feed Money", balance, VendingMachineCLI.finalBalance);
         } catch (Exception e) {
             e.getMessage();
         }
@@ -33,19 +29,19 @@ public class Money {
     public BigDecimal makePurchase( BigDecimal currentPrice) {
         int result = (balance.compareTo(currentPrice));
         if (result == -1) {
-            System.out.println("Your balance is too low to purchase this item.");
+            System.out.println("Sorry but your balance is too low to purchase this item.");
             VendingMachineCLI.finalBalance = balance;
         } else {
             VendingMachineCLI.finalBalance = balance.subtract(currentPrice);
             balance = balance.subtract(currentPrice);
-            VendingMachineCLI.currentQuantity -= 1;
-            Display.quantityList.add(VendingMachineCLI.currentIndex, VendingMachineCLI.currentQuantity);
+            int quantityDecrease =  VendingMachineCLI.currentQuantity -= 1;
+
+            Display.quantityList.add(VendingMachineCLI.currentIndex, quantityDecrease);
         }
             appLog.itemLog(VendingMachineCLI.currentName, VendingMachineCLI.slotNumber, balance, VendingMachineCLI.finalBalance);
             return VendingMachineCLI.finalBalance;
     }
 
-    //RETURN CHANGE - UPDATE BALANCE
     public void makeChange() {
         int quarterCount = 0;
         int dimeCount = 0;
@@ -71,7 +67,7 @@ public class Money {
                 }
             }
         }
-        System.out.println("Dispensing $" + VendingMachineCLI.finalBalance + " in " + quarterCount + " quarters " + dimeCount + " dimes " + nickelCount + " nickels ");
+        System.out.println("Dispensing $" +VendingMachineCLI.finalBalance+ " in " +quarterCount+ " quarters " +dimeCount+ " dimes " +nickelCount+ " nickels ");
         balance = new BigDecimal(0);
 
         try{
@@ -80,5 +76,4 @@ public class Money {
             e.getMessage();
         }
     }
-
 }

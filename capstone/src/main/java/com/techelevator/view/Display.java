@@ -78,7 +78,7 @@ public class Display {
     //QUANTITY LIST - SIXTEEN FIVE
     public static List<Integer> getQuantityList(List slotList) {
     //  public static void getQuantity (){
-        for (int i = 0; i <16; i++){
+        for (int i = 0; i < slotList.size()+1; i++){
             quantityList.add(5);
         }
         return quantityList;

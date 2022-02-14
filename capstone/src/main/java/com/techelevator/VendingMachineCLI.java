@@ -42,10 +42,14 @@ public class VendingMachineCLI {
 	public Gum gum = new Gum(kvMap.get(slotNumber));
 	public Candy candy = new Candy(kvMap.get(slotNumber));
 
+
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 		this.VendingMachine = new VendingMachine();
 	}
+
+	public VendingMachineCLI() {}
+
 	public Menu getMenu() {
 		return menu;
 	}
@@ -78,13 +82,13 @@ public class VendingMachineCLI {
 						//FEED MONEY
 						if (choice.equals(PMO)) {
 							System.out.println();
-							System.out.println("* Vending Machine only accepts $1, $2, $5, and $10 *");
+							System.out.println("* Vending Machine will only accepts $1, $2, $5, and $10 dollar bills *");
 							System.out.println();
-							System.out.print("Please enter an amount : ");
+							System.out.print("Please enter the selected dollar amount : ");
 							System.out.println();
 							selection = purchaseScanner.nextLine();
 							if (!(selection.equals("1")) && !(selection.equals("2")) && !(selection.equals("5")) && !(selection.equals("10"))) {
-								System.out.println("Sorry, we only take ones, twos, fives, and tens!");
+								System.out.println("Sorry, we only accepts $1, $2, $5, and $10 dollar bills.");
 							} else
 								money.feedMoney(selection);
 							//SELECT PRODUCT
@@ -96,7 +100,7 @@ public class VendingMachineCLI {
 								if ( !slots.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number.");
 								}
-							int currentIndex = slots.indexOf(slotNumber);
+							 currentIndex = slots.indexOf(slotNumber);
 							currentName = names.get(currentIndex);
 							currentPrice = prices.get(currentIndex);
 							currentQuantity = quantity.get(currentIndex);
@@ -127,13 +131,11 @@ public class VendingMachineCLI {
 									}
 								}
 							}
-								//MAKE CHANGE AND GO TO MAIN MENU
 						} else if (choice.equals(PMO_FINISH)) {
 							money.makeChange();
 							break;
 						}
 					}
-					//EXIT
 		} else if (choice.equals(EXIT)) {
 			System.exit(0);
 		}

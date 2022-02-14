@@ -9,6 +9,7 @@ public class Candy extends Item {
     }
 
     public Candy(Item item) {};
+    public Candy() {}
 
     public String message() {
         return "Munch Munch, Yum!";
