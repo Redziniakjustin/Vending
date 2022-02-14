@@ -91,6 +91,7 @@ public class VendingMachineCLI {
 						} else if (choice.equals(PM0_SELECT_PRODUCT)) {
 							Display.newDisplayMenu();
 							//CATCH INVALID SLOT
+							System.out.print("Please enter a slot number: ");
 							slotNumber = purchaseScanner.nextLine();
 								if ( !slots.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number.");
