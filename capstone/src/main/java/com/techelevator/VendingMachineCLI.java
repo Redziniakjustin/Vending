@@ -15,6 +15,7 @@ public class VendingMachineCLI {
 	public static BigDecimal finalBalance = new BigDecimal(0);
 	public static Integer currentQuantity;
 	public static String currentName;
+	public static int currentIndex;
 
 	//MAIN MENU FINAL VARIABLES
 	private static final String MMO_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -106,7 +107,7 @@ public class VendingMachineCLI {
 								if ( !slots.contains(slotNumber)) {
 									System.out.println("Sorry, that isn't a valid slot number.");
 								}
-							int currentIndex = slots.indexOf(slotNumber);
+							currentIndex = slots.indexOf(slotNumber);
 							currentName = names.get(currentIndex);
 							currentPrice = prices.get(currentIndex);
 							currentQuantity = quantity.get(currentIndex);

@@ -55,7 +55,6 @@ public class Display {
         for (int i = 0; i <15; i++){
             quantityList.add(5);
         }
-        System.out.println(quantityList);
         return quantityList;
     }
 

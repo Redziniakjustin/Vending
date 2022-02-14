@@ -36,7 +36,8 @@ public class Money {
         } else {
             VendingMachineCLI.finalBalance = balance.subtract(currentPrice);
             balance = balance.subtract(currentPrice);
-           VendingMachineCLI.currentQuantity = VendingMachineCLI.currentQuantity-1;
+           VendingMachineCLI.currentQuantity -= 1;
+           Display.quantityList.add(VendingMachineCLI.currentIndex, VendingMachineCLI.currentQuantity);
         }
         try{
             appLog.itemLog(VendingMachineCLI.currentName, VendingMachineCLI.slotNumber, balance, VendingMachineCLI.finalBalance);
