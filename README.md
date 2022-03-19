@@ -3,7 +3,8 @@
 
 ## Developed in Java using OOP fundamentals and implementing File I/O. This is one of the first projects that I have completed as a developer. The project was completed using paired programing.
 
-VM CLI Functionality: 
+## Basic Functionality: 
+![image](https://user-images.githubusercontent.com/47091126/159130335-3a08a7a6-5734-43eb-8545-665e070617b1.png)
 
 The vending machine dispenses beverages, candy, chips, and gum.
 Each item includes a Name and a Price.
